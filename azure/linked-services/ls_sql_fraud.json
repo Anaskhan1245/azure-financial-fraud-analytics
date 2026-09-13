@@ -1,0 +1,16 @@
+{
+  "name": "ls_sql_fraud",
+  "type": "Microsoft.DataFactory/factories/linkedservices",
+  "properties": {
+    "description": "Connection to fraud analytics SQL database",
+    "annotations": [],
+    "type": "AzureSqlDatabase",
+    "typeProperties": {
+      "server": "sql-anas-fraud-1245.database.windows.net",
+      "database": "fraud_analytics",
+      "encrypt": "mandatory",
+      "trustServerCertificate": false,
+      "authenticationType": "SystemAssignedManagedIdentity"
+    }
+  }
+}
