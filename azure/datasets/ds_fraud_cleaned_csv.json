@@ -1,0 +1,110 @@
+{
+  "name": "ds_fraud_cleaned_csv",
+  "properties": {
+    "linkedServiceName": {
+      "referenceName": "ls_adls_fraud",
+      "type": "LinkedServiceReference"
+    },
+    "annotations": [],
+    "type": "DelimitedText",
+    "typeProperties": {
+      "location": {
+        "type": "AzureBlobFSLocation",
+        "fileName": "financial_transaction_risk_cleaned.csv",
+        "folderPath": "processed",
+        "fileSystem": "fraud-data"
+      },
+      "columnDelimiter": ",",
+      "escapeChar": "\\",
+      "firstRowAsHeader": true,
+      "quoteChar": "\""
+    },
+    "schema": [
+      {
+        "name": "step",
+        "type": "String"
+      },
+      {
+        "name": "type",
+        "type": "String"
+      },
+      {
+        "name": "amount",
+        "type": "String"
+      },
+      {
+        "name": "nameOrig",
+        "type": "String"
+      },
+      {
+        "name": "oldbalanceOrg",
+        "type": "String"
+      },
+      {
+        "name": "newbalanceOrig",
+        "type": "String"
+      },
+      {
+        "name": "nameDest",
+        "type": "String"
+      },
+      {
+        "name": "oldbalanceDest",
+        "type": "String"
+      },
+      {
+        "name": "newbalanceDest",
+        "type": "String"
+      },
+      {
+        "name": "isFraud",
+        "type": "String"
+      },
+      {
+        "name": "isFlaggedFraud",
+        "type": "String"
+      },
+      {
+        "name": "origin_balance_change",
+        "type": "String"
+      },
+      {
+        "name": "origin_balance_error",
+        "type": "String"
+      },
+      {
+        "name": "destination_balance_change",
+        "type": "String"
+      },
+      {
+        "name": "destination_balance_error",
+        "type": "String"
+      },
+      {
+        "name": "origin_zero_balance",
+        "type": "String"
+      },
+      {
+        "name": "destination_zero_balance",
+        "type": "String"
+      },
+      {
+        "name": "amount_percentile",
+        "type": "String"
+      },
+      {
+        "name": "risk_score",
+        "type": "String"
+      },
+      {
+        "name": "risk_category",
+        "type": "String"
+      },
+      {
+        "name": "balance_anomaly",
+        "type": "String"
+      }
+    ]
+  },
+  "type": "Microsoft.DataFactory/factories/datasets"
+}
