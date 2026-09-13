@@ -1,0 +1,126 @@
+{
+  "name": "ds_sql_transactions",
+  "properties": {
+    "linkedServiceName": {
+      "referenceName": "ls_sql_fraud",
+      "type": "LinkedServiceReference"
+    },
+    "annotations": [],
+    "type": "AzureSqlTable",
+    "schema": [
+      {
+        "name": "step",
+        "type": "int",
+        "precision": 10
+      },
+      {
+        "name": "type",
+        "type": "varchar"
+      },
+      {
+        "name": "amount",
+        "type": "decimal",
+        "precision": 18,
+        "scale": 2
+      },
+      {
+        "name": "nameOrig",
+        "type": "varchar"
+      },
+      {
+        "name": "oldbalanceOrg",
+        "type": "decimal",
+        "precision": 18,
+        "scale": 2
+      },
+      {
+        "name": "newbalanceOrig",
+        "type": "decimal",
+        "precision": 18,
+        "scale": 2
+      },
+      {
+        "name": "nameDest",
+        "type": "varchar"
+      },
+      {
+        "name": "oldbalanceDest",
+        "type": "decimal",
+        "precision": 18,
+        "scale": 2
+      },
+      {
+        "name": "newbalanceDest",
+        "type": "decimal",
+        "precision": 18,
+        "scale": 2
+      },
+      {
+        "name": "isFraud",
+        "type": "int",
+        "precision": 10
+      },
+      {
+        "name": "isFlaggedFraud",
+        "type": "int",
+        "precision": 10
+      },
+      {
+        "name": "origin_balance_change",
+        "type": "decimal",
+        "precision": 18,
+        "scale": 2
+      },
+      {
+        "name": "origin_balance_error",
+        "type": "decimal",
+        "precision": 18,
+        "scale": 2
+      },
+      {
+        "name": "destination_balance_change",
+        "type": "decimal",
+        "precision": 18,
+        "scale": 2
+      },
+      {
+        "name": "destination_balance_error",
+        "type": "decimal",
+        "precision": 18,
+        "scale": 2
+      },
+      {
+        "name": "origin_zero_balance",
+        "type": "bit"
+      },
+      {
+        "name": "destination_zero_balance",
+        "type": "bit"
+      },
+      {
+        "name": "amount_percentile",
+        "type": "decimal",
+        "precision": 10,
+        "scale": 6
+      },
+      {
+        "name": "risk_score",
+        "type": "int",
+        "precision": 10
+      },
+      {
+        "name": "risk_category",
+        "type": "varchar"
+      },
+      {
+        "name": "balance_anomaly",
+        "type": "bit"
+      }
+    ],
+    "typeProperties": {
+      "schema": "dbo",
+      "table": "transactions"
+    }
+  },
+  "type": "Microsoft.DataFactory/factories/datasets"
+}
