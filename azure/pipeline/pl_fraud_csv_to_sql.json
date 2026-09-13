@@ -1,0 +1,338 @@
+{
+  "name": "pl_fraud_csv_to_sql",
+  "properties": {
+    "activities": [
+      {
+        "name": "copy_fraud_to_sql",
+        "type": "Copy",
+        "dependsOn": [],
+        "policy": {
+          "timeout": "0.12:00:00",
+          "retry": 0,
+          "retryIntervalInSeconds": 30,
+          "secureOutput": false,
+          "secureInput": false
+        },
+        "userProperties": [],
+        "typeProperties": {
+          "source": {
+            "type": "DelimitedTextSource",
+            "storeSettings": {
+              "type": "AzureBlobFSReadSettings",
+              "recursive": true,
+              "enablePartitionDiscovery": false
+            },
+            "formatSettings": {
+              "type": "DelimitedTextReadSettings"
+            }
+          },
+          "sink": {
+            "type": "AzureSqlSink",
+            "preCopyScript": "DELETE FROM dbo.transactions;",
+            "writeBehavior": "insert",
+            "sqlWriterUseTableLock": false,
+            "disableMetricsCollection": false
+          },
+          "enableStaging": false,
+          "translator": {
+            "type": "TabularTranslator",
+            "mappings": [
+              {
+                "source": {
+                  "name": "step",
+                  "type": "String",
+                  "physicalType": "String"
+                },
+                "sink": {
+                  "name": "step",
+                  "type": "Int32",
+                  "physicalType": "int"
+                }
+              },
+              {
+                "source": {
+                  "name": "type",
+                  "type": "String",
+                  "physicalType": "String"
+                },
+                "sink": {
+                  "name": "type",
+                  "type": "String",
+                  "physicalType": "varchar"
+                }
+              },
+              {
+                "source": {
+                  "name": "amount",
+                  "type": "String",
+                  "physicalType": "String"
+                },
+                "sink": {
+                  "name": "amount",
+                  "type": "Decimal",
+                  "physicalType": "decimal",
+                  "scale": 2,
+                  "precision": 18
+                }
+              },
+              {
+                "source": {
+                  "name": "nameOrig",
+                  "type": "String",
+                  "physicalType": "String"
+                },
+                "sink": {
+                  "name": "nameOrig",
+                  "type": "String",
+                  "physicalType": "varchar"
+                }
+              },
+              {
+                "source": {
+                  "name": "oldbalanceOrg",
+                  "type": "String",
+                  "physicalType": "String"
+                },
+                "sink": {
+                  "name": "oldbalanceOrg",
+                  "type": "Decimal",
+                  "physicalType": "decimal",
+                  "scale": 2,
+                  "precision": 18
+                }
+              },
+              {
+                "source": {
+                  "name": "newbalanceOrig",
+                  "type": "String",
+                  "physicalType": "String"
+                },
+                "sink": {
+                  "name": "newbalanceOrig",
+                  "type": "Decimal",
+                  "physicalType": "decimal",
+                  "scale": 2,
+                  "precision": 18
+                }
+              },
+              {
+                "source": {
+                  "name": "nameDest",
+                  "type": "String",
+                  "physicalType": "String"
+                },
+                "sink": {
+                  "name": "nameDest",
+                  "type": "String",
+                  "physicalType": "varchar"
+                }
+              },
+              {
+                "source": {
+                  "name": "oldbalanceDest",
+                  "type": "String",
+                  "physicalType": "String"
+                },
+                "sink": {
+                  "name": "oldbalanceDest",
+                  "type": "Decimal",
+                  "physicalType": "decimal",
+                  "scale": 2,
+                  "precision": 18
+                }
+              },
+              {
+                "source": {
+                  "name": "newbalanceDest",
+                  "type": "String",
+                  "physicalType": "String"
+                },
+                "sink": {
+                  "name": "newbalanceDest",
+                  "type": "Decimal",
+                  "physicalType": "decimal",
+                  "scale": 2,
+                  "precision": 18
+                }
+              },
+              {
+                "source": {
+                  "name": "isFraud",
+                  "type": "String",
+                  "physicalType": "String"
+                },
+                "sink": {
+                  "name": "isFraud",
+                  "type": "Int32",
+                  "physicalType": "int"
+                }
+              },
+              {
+                "source": {
+                  "name": "isFlaggedFraud",
+                  "type": "String",
+                  "physicalType": "String"
+                },
+                "sink": {
+                  "name": "isFlaggedFraud",
+                  "type": "Int32",
+                  "physicalType": "int"
+                }
+              },
+              {
+                "source": {
+                  "name": "origin_balance_change",
+                  "type": "String",
+                  "physicalType": "String"
+                },
+                "sink": {
+                  "name": "origin_balance_change",
+                  "type": "Decimal",
+                  "physicalType": "decimal",
+                  "scale": 2,
+                  "precision": 18
+                }
+              },
+              {
+                "source": {
+                  "name": "origin_balance_error",
+                  "type": "String",
+                  "physicalType": "String"
+                },
+                "sink": {
+                  "name": "origin_balance_error",
+                  "type": "Decimal",
+                  "physicalType": "decimal",
+                  "scale": 2,
+                  "precision": 18
+                }
+              },
+              {
+                "source": {
+                  "name": "destination_balance_change",
+                  "type": "String",
+                  "physicalType": "String"
+                },
+                "sink": {
+                  "name": "destination_balance_change",
+                  "type": "Decimal",
+                  "physicalType": "decimal",
+                  "scale": 2,
+                  "precision": 18
+                }
+              },
+              {
+                "source": {
+                  "name": "destination_balance_error",
+                  "type": "String",
+                  "physicalType": "String"
+                },
+                "sink": {
+                  "name": "destination_balance_error",
+                  "type": "Decimal",
+                  "physicalType": "decimal",
+                  "scale": 2,
+                  "precision": 18
+                }
+              },
+              {
+                "source": {
+                  "name": "origin_zero_balance",
+                  "type": "String",
+                  "physicalType": "String"
+                },
+                "sink": {
+                  "name": "origin_zero_balance",
+                  "type": "Boolean",
+                  "physicalType": "bit"
+                }
+              },
+              {
+                "source": {
+                  "name": "destination_zero_balance",
+                  "type": "String",
+                  "physicalType": "String"
+                },
+                "sink": {
+                  "name": "destination_zero_balance",
+                  "type": "Boolean",
+                  "physicalType": "bit"
+                }
+              },
+              {
+                "source": {
+                  "name": "amount_percentile",
+                  "type": "String",
+                  "physicalType": "String"
+                },
+                "sink": {
+                  "name": "amount_percentile",
+                  "type": "Decimal",
+                  "physicalType": "decimal",
+                  "scale": 6,
+                  "precision": 10
+                }
+              },
+              {
+                "source": {
+                  "name": "risk_score",
+                  "type": "String",
+                  "physicalType": "String"
+                },
+                "sink": {
+                  "name": "risk_score",
+                  "type": "Int32",
+                  "physicalType": "int"
+                }
+              },
+              {
+                "source": {
+                  "name": "risk_category",
+                  "type": "String",
+                  "physicalType": "String"
+                },
+                "sink": {
+                  "name": "risk_category",
+                  "type": "String",
+                  "physicalType": "varchar"
+                }
+              },
+              {
+                "source": {
+                  "name": "balance_anomaly",
+                  "type": "String",
+                  "physicalType": "String"
+                },
+                "sink": {
+                  "name": "balance_anomaly",
+                  "type": "Boolean",
+                  "physicalType": "bit"
+                }
+              }
+            ],
+            "typeConversion": true,
+            "typeConversionSettings": {
+              "allowDataTruncation": false,
+              "treatBooleanAsNumber": false
+            }
+          }
+        },
+        "inputs": [
+          {
+            "referenceName": "ds_fraud_cleaned_csv",
+            "type": "DatasetReference"
+          }
+        ],
+        "outputs": [
+          {
+            "referenceName": "ds_sql_transactions",
+            "type": "DatasetReference"
+          }
+        ]
+      }
+    ],
+    "annotations": [],
+    "lastPublishTime": "2026-09-12T16:53:04Z"
+  },
+  "type": "Microsoft.DataFactory/factories/pipelines"
+}
