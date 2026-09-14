@@ -13,12 +13,10 @@ Power BI report.
 ## Dashboard
 
 ### Overview and Risk
-![Overview and Risk](images/1-overviewandrisk.png)
-
-
+![Overview and Risk](images/1-Overview%20and%20Risk.png)
 
 ### Insights and Recommendations
-![Insights and Recommendations]((https://github.com/Anaskhan1245/azure-financial-fraud-analytics/blob/main/images/2-Insights%20and%20Recommendations.png))
+![Insights and Recommendations](images/2-Insights%20and%20Recommendations.png)
 
 ## Dataset
 
