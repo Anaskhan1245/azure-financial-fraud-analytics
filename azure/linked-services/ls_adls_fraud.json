@@ -1,0 +1,12 @@
+{
+  "name": "ls_adls_fraud",
+  "type": "Microsoft.DataFactory/factories/linkedservices",
+  "properties": {
+    "description": "Connection to fraud project data lake",
+    "annotations": [],
+    "type": "AzureBlobFS",
+    "typeProperties": {
+      "url": "https://anasfraudlake1245.dfs.core.windows.net/"
+    }
+  }
+}
